@@ -219,10 +219,10 @@ class Button extends StatelessWidget {
 
 class Example1 extends Example {
   final String code = "Container(color: red)";
-  final String explanation = "The screen is the parent of the Container. "
-      "It forces the red Container to be exactly the same size of the screen."
-      "\n\n"
-      "So the Container fills the screen and it gets all red.";
+  final String explanation = "Экран является родителем контейнера. "
+      "\n\n"  
+      "Это застаялет контейнер быть точно размера экрана"
+      "\n\n";
 
   @override
   Widget build(BuildContext context) {
@@ -235,10 +235,8 @@ class Example1 extends Example {
 class Example2 extends Example {
   final String code = "Container(width: 100, height: 100, color: red)";
   final String explanation =
-      "The red Container wants to be 100x100, but it can't, "
-      "because the screen forces it to be exactly the same size of the screen."
-      "\n\n"
-      "So the Container fills the screen.";
+      "Контейнер хочет быть 100 х 100, но не может,"
+      "потому что экран заставляет его быть такого размера";
 
   @override
   Widget build(BuildContext context) {
@@ -252,11 +250,11 @@ class Example3 extends Example {
   final String code = "Center(\n"
       "   child: Container(width: 100, height: 100, color: red))";
   final String explanation =
-      "The screen forces the Center to be exactly the same size of the screen."
+      "Экран говорит Center быть размеров экрана"
       "\n\n"
-      "So the Center fills the screen."
+      "Center заполняет все пространство."
       "\n\n"
-      "The Center tells the Container it can be any size it wants, but not bigger than the screen."
+      "Center говорит Container: 'Можешь быть каким хочешь, но не более размеров экрана'"
       "\n\n"
       "Now the Container can indeed be 100x100.";
 
@@ -275,10 +273,10 @@ class Example4 extends Example {
       "   alignment: Alignment.bottomRight,\n"
       "   child: Container(width: 100, height: 100, color: red))";
   final String explanation =
-      "This is different from the previous example in that it uses Align instead of Center."
+      "Это отличается от предыдущего примера, что тут используется Align вместо Center"
       "\n\n"
-      "The Align also tells the Container it can be any size it wants, but if there is empty space it will not center the Container, "
-      "but will instead align it to the bottom-right of the available space.";
+      "Align также сообщает Container, что он может быть любого размера, который он хочет, но если есть пустое место, он не будет центрировать Container,"
+      "но вместо этого выровняет его по нижнему правому краю доступного пространства.";
 
   @override
   Widget build(BuildContext context) {
@@ -298,13 +296,13 @@ class Example5 extends Example {
       "              width: double.infinity,\n"
       "              height: double.infinity))";
   final String explanation =
-      "The screen forces the Center to be exactly the same size of the screen."
+      "Экран говорит Center быть размеров экрана"
       "\n\n"
-      "So the Center fills the screen."
+      "Center заполняет экран"
       "\n\n"
-      "The Center tells the Container it can be any size it wants, but not bigger than the screen."
+      "Center говорит Container: 'Можешь быть каким хочешь, но не более размеров экрана'"
       "\n\n"
-      "The Container wants to be of infinite size, but since it can't be bigger than the screen it will just fill the screen.";
+      "Container хочет быть бесконечным, но поскольку пришли конкретные ограничения, то он просто заполняет экран";
 
   @override
   Widget build(BuildContext context) {
@@ -320,17 +318,15 @@ class Example5 extends Example {
 class Example6 extends Example {
   final String code = "Center(child: Container(color: red))";
   final String explanation =
-      "The screen forces the Center to be exactly the same size of the screen."
+      "Экран говорит Center быть размерами как экран"
       "\n\n"
-      "So the Center fills the screen."
+      "Center заполняет весь экран"
       "\n\n"
-      "The Center tells the Container it is free to be any size it wants, but not bigger than the screen."
+      "Center говорит Container: 'Будь какой-хочешь, но не больше экрана'"
       "\n\n"
-      "Since the Container has no child and no fixed size, it decides it wants to be as big as possible, so it fits the whole screen."
+      "Поскольку у Container нет дочерних элементов и нет фиксированного размера, он решает быть как можно больше"
       "\n\n"
-      "But why does the Container decide that? "
-      "Simply because that's a design decision by those who created the Container widget. "
-      "It could have been created differently, and you actually have to read the Container's documentation to understand what it will do depending on the circumstances. ";
+      "Это не следует из общего правила (но не противоречит им). Просто у него такая реализация";
 
   @override
   Widget build(BuildContext context) {
@@ -347,20 +343,19 @@ class Example7 extends Example {
       "   child: Container(color: red\n"
       "      child: Container(color: green, width: 30, height: 30)))";
   final String explanation =
-      "The screen forces the Center to be exactly the same size of the screen."
+      "Экран говорит Center быть размерами как экран"
       "\n\n"
-      "So the Center fills the screen."
+      "Center заполняет весь экран"
       "\n\n"
-      "The Center tells the red Container it can be any size it wants, but not bigger than the screen."
+      "Center говорит красному Container: 'Будь какой хочешь, но не более экрана' "
       "\n\n"
-      "Since the red Container has no size but has a child, it decides it wants to be the same size of its child."
+      " Т.к. красный контейнер не имеет определённого размера, он рещает быть размером с ребёнка"
       "\n\n"
-      "The red Container tells its child that if can be any size it wants, but not bigger than the screen."
+      "Красный говорит зелёному: 'Будь какой хочешь, но не более экрана' "
       "\n\n"
-      "The child happens to be a green Container, that wants to be 30x30."
+      "Зелёный хочет быть размеров 30х30"
       "\n\n"
-      "As said, the red Container will size itself to its children size, so it will also be 30x30. "
-      "No red color will be visible, since the green Container will occupy all of the red Container.";
+      "Красный принимает размеры зеленого (у него такая реализация)";
 
   @override
   Widget build(BuildContext context) {
@@ -381,9 +376,8 @@ class Example8 extends Example {
       "      padding: const EdgeInsets.all(20.0),\n"
       "      child: Container(color: green, width: 30, height: 30)))";
   final String explanation =
-      "The red Container will size itself to its children size, but it takes its own padding into consideration. "
-      "So it will also be 30x30, plus a 20x20 padding. "
-      "The red color will be visible because of the padding, and the green Container will have the same size as the previous example.";
+      "Красный Container изменит свой размер до размеров своих детей, но будет учитывать свои отступы"
+      "30х20 + отступ 20х20";
 
   @override
   Widget build(BuildContext context) {
@@ -406,12 +400,9 @@ class Example9 extends Example {
       "              maxWidth: 150, maxHeight: 150),\n"
       "      child: Container(color: red, width: 10, height: 10)))";
   final String explanation =
-      "You would guess the Container would have to be between 70 and 150 pixels, but you would be wrong. "
-      "The ConstrainedBox only imposes ADDITIONAL constraints than the ones it received from its parent."
-      "\n\n"
-      "Here, the screen forces the ConstrainedBox to be exactly the same size of the screen, "
-      "so it will tell its child Container to also assume the size of the screen, "
-      "thus ignoring its 'constraints' parameter.";
+      "Вы можете предположить, что Container должен быть между 70 и 150, но вы ошибайтесь"
+      "ConstrainedBox накладывает только ДОПОЛНИТЕЛЬНЫЕ ограничения, чем те которые он получил от своего родителя";
+
 
   @override
   Widget build(BuildContext context) {
@@ -433,11 +424,11 @@ class Example10 extends Example {
       "                 maxWidth: 150, maxHeight: 150),\n"
       "        child: Container(color: red, width: 10, height: 10))))";
   final String explanation =
-      "Now, Center will allow ConstrainedBox to be any size up to the screen size."
+      "Теперь, Center позволяет ConstrainedBox быть любого размера до размера экрана"
       "\n\n"
-      "The ConstrainedBox will impose its child the ADDITIONAL constraints from its 'constraints' parameter."
+      "ConstrainedBox наложит дополнительные ограничения из своих ограничений"
       "\n\n"
-      "So the Container must be between 70 and 150 pixels. It wants to have 10 pixels, so it will end up having 70 (the MINIMUM).";
+      "Container должен быть от 70 до 150. Он хочет быть 10, но будет 70 (minWidth и minHeight).";
 
   @override
   Widget build(BuildContext context) {
@@ -461,11 +452,11 @@ class Example11 extends Example {
       "                 maxWidth: 150, maxHeight: 150),\n"
       "        child: Container(color: red, width: 1000, height: 1000))))";
   final String explanation =
-      "Center will allow ConstrainedBox to be any size up to the screen size."
+      "Теперь, Center позволяет ConstrainedBox быть любого размера до размера экрана"
       "\n\n"
-      "The ConstrainedBox will impose its child the ADDITIONAL constraints from its 'constraints' parameter."
+      "ConstrainedBox наложит дополнительные ограничения из своих ограничений"
       "\n\n"
-      "So the Container must be between 70 and 150 pixels. It wants to have 1000 pixels, so it will end up having 150 (the MAXIMUM).";
+      "Container должен быть от 70 до 150. Он хочеть быть 1000, но будет иметь размеры 150 (maxWidth и maxHeight).";
 
   @override
   Widget build(BuildContext context) {
@@ -489,11 +480,11 @@ class Example12 extends Example {
       "                 maxWidth: 150, maxHeight: 150),\n"
       "        child: Container(color: red, width: 100, height: 100))))";
   final String explanation =
-      "Center will allow ConstrainedBox to be any size up to the screen size."
+      "Теперь, Center позволяет ConstrainedBox быть любого размера до размера экрана"
       "\n\n"
-      "The ConstrainedBox will impose its child the ADDITIONAL constraints from its 'constraints' parameter."
+      "ConstrainedBox наложит дополнительные ограничения из своих ограничений"
       "\n\n"
-      "So the Container must be between 70 and 150 pixels. It wants to have 100 pixels, and that's the size it will have, since that's between 70 and 150.";
+      "Container должен быть от 70 до 150. Он хочет быть 100 на 100 и будет таких размеров";
 
   @override
   Widget build(BuildContext context) {
@@ -513,9 +504,9 @@ class Example13 extends Example {
   final String code = "UnconstrainedBox(\n"
       "   child: Container(color: red, width: 20, height: 50));";
   final String explanation =
-      "The screen forces the UnconstrainedBox to be exactly the same size of the screen."
+      "Экран говорит UnconstrainedBox быть точно размеров экрана"
       "\n\n"
-      "However, the UnconstrainedBox lets its Container child have any size it wants.";
+      "UnconstrainedBox позволяет Container иметь размер, какой он хочет.";
 
   @override
   Widget build(BuildContext context) {
@@ -531,11 +522,10 @@ class Example14 extends Example {
   final String code = "UnconstrainedBox(\n"
       "   child: Container(color: red, width: 4000, height: 50));";
   final String explanation =
-      "The screen forces the UnconstrainedBox to be exactly the same size of the screen, "
-      "and UnconstrainedBox lets its Container child have any size it wants."
+      "Экран говорит UnconstrainedBox быть точно размеров экрана, "
+      "и UnconstrainedBox позволяет Container иметь размер, какой он хочет."
       "\n\n"
-      "Unfortunately, in this case the Container has 4000 pixels of width and is too big to fix UnconstrainedBox, "
-      "so the UnconstrainedBox will display the much dreaded \"overflow warning\".";
+      "Возникает ошибка о переполнени из-за больших размеров Container";
 
   @override
   Widget build(BuildContext context) {
@@ -551,13 +541,12 @@ class Example15 extends Example {
   final String code = "OverflowBox(\n"
       "   child: Container(color: red, width: 4000, height: 50));";
   final String explanation =
-      "The screen forces the OverflowBox to be exactly the same size of the screen, "
-      "and OverflowBox lets its Container child have any size it wants."
+      "Экран говорит Overflow быть точно размеров экрана, "
+      "и OverflowBox позволяет Container иметь размер, какой он хочет."
       "\n\n"
-      "OverflowBox is similar to UnconstrainedBox, and the difference is that it won't display any warnings if the child doesn't fit the space."
+      "OverflowBox похож на UnconstrainedBox, и разница в том, что он не показывает ошибок"
       "\n\n"
-      "In this case the Container has 4000 pixels of width, and is too big to fix OverflowBox, "
-      "but the OverflowBox will simply show what it can, no warnings given.";
+      "OverflowBox просто показывает то что может, без ошибок";
 
   @override
   Widget build(BuildContext context) {
@@ -577,12 +566,12 @@ class Example16 extends Example {
   final String code = "UnconstrainedBox(\n"
       "   child: Container(color: Colors.red, width: double.infinity, height: 100));";
   final String explanation =
-      "This won't render anything, and you will get an error in the console."
+      "Это ничего не отобразит и будет ошибка в консоли"
       "\n\n"
-      "The UnconstrainedBox lets its child have any size it wants, "
-      "however its child is a Container with infinite size."
+      "UnconstrainedBox разрешает ребёнку быть, каким он хочет,"
+      "однако Container хочет быть бесконечного размера"
       "\n\n"
-      "Flutter can't render infinite sizes, so it will throw an error with the following message: "
+      "Flutter не может отобразить бесконечные размеры, поэтому будет ошибка - "
       "'BoxConstraints forces an infinite width.'";
 
   @override
@@ -600,16 +589,13 @@ class Example17 extends Example {
       "   child: LimitedBox(maxWidth: 100,\n"
       "      child: Container(color: Colors.red,\n"
       "                       width: double.infinity, height: 100));";
-  final String explanation = "Here you won't get an error anymore, "
-      "because when the LimitedBox is given an infinite size by the UnconstrainedBox, "
-      "it will pass down to its child the maximum width of 100."
+  final String explanation = "Здесь ошибки не будет, "
+      "потому что когда LimitedBox получает бесконечный размер от UnconstrainedBox, "
+      "он передаст своему ребенку размер 100"
       "\n\n"
-      "Note, if you change the UnconstrainedBox to a Center widget, "
-      "the LimitedBox will not apply its limit anymore (since its limit is only applied when it gets infinite constraints), "
-      "and the Container width will be allowed to grow past 100."
-      "\n\n"
-      "This makes it clear the difference between a LimitedBox and a ConstrainedBox.";
-
+      "Но если заменить UnconstrainedBox на Center, то LimitedBox больше работать не будет, т.к. "
+      "он работает только в условиях бесконечных ограничений";
+      
   @override
   Widget build(BuildContext context) {
     return UnconstrainedBox(
@@ -628,13 +614,13 @@ class Example18 extends Example {
   final String code = "FittedBox(\n"
       "   child: Text('Some Example Text.'));";
   final String explanation =
-      "The screen forces the FittedBox to be exactly the same size of the screen."
+      "Экран говорит FittedBox быть точно размеров экрана."
       "\n\n"
-      "The Text will have some natural width (also called its intrinsic width) that depends on the amount of text, its font size, etc."
+      "Текст будет иметь некоторую свою естественную ширину"
       "\n\n"
-      "The FittedBox will let the Text have any size it wants, "
-      "but after the Text tells its size to the FittedBox, "
-      "the FittedBox will scale it until it fills all of the available width.";
+      "FittedBox позволит Text иметь любой размер, который он хочет, "
+      "но после того как Text сообщит свой размер FittedBox,"
+      "FittedBox будет масштабировать его до своей ширины";
 
   @override
   Widget build(BuildContext context) {
@@ -651,12 +637,12 @@ class Example19 extends Example {
       "   child: FittedBox(\n"
       "      child: Text('Some Example Text.')));";
   final String explanation =
-      "But what happens if we put the FittedBox inside of a Center? "
-      "The Center will let the FittedBox have any size it wants, up to the screen size."
+      "Но что будет, если FittedBox обернуть в Center? "
+      "Center позволит FittedBox иметь любой размер до размеров экрана"
       "\n\n"
-      "The FittedBox will then size itself to the Text, and let the Text have any size it wants."
+      "FittedBox позволит Text иметь любой размер, какой он хочет и примет его размеры"
       "\n\n"
-      "Since both FittedBox and the Text have the same size, no scaling will happen.";
+      "Поскольку и FittedBox и Text имеют одинаковый размер, масштабирования не произойдёт";
 
   @override
   Widget build(BuildContext context) {
@@ -675,10 +661,10 @@ class Example20 extends Example {
       "   child: FittedBox(\n"
       "      child: Text('…')));";
   final String explanation =
-      "However, what happens if FittedBox is inside of Center, but the Text is too large to fit the screen?"
+      "Но что произойдёт, еслли Text слишком велик для экрана"
       "\n\n"
-      "FittedBox will try to size itself to the Text, but it cannot be bigger than the screen. "
-      "It will then assume the screen size, and resize the Text so that it fits the screen too.";
+      "FittedBox попытается подстроиться под размер текста, но он не может быть больше экрана"
+      "Затем он примет размер экрана и изменит размер текста, чтобы он тоже соотвествовал размеру экрана";
 
   @override
   Widget build(BuildContext context) {
