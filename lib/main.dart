@@ -39,8 +39,6 @@ class HomePage extends StatelessWidget {
         Example25(),
         Example26(),
         Example27(),
-        Example28(),
-        Example29(),
       ]);
 }
 
@@ -682,9 +680,9 @@ class Example20 extends Example {
 class Example21 extends Example {
   final String code = "Center(\n"
       "   child: Text('…'));";
-  final String explanation = "If, however, we remove the FittedBox, "
-      "the Text will get its maximum width from the screen, "
-      "and will break the line so that it fits the screen.";
+  final String explanation = "Если убрать FittedBox, "
+      "Text получит максимальную ширину от экрана"
+      "и перенесёт строку, если она не влезает";
 
   @override
   Widget build(BuildContext context) {
@@ -702,9 +700,9 @@ class Example22 extends Example {
       "   child: Container(\n"
       "      height: 20.0, width: double.infinity));";
   final String explanation =
-      "Note FittedBox can only scale a widget that is BOUNDED (has non infinite width and height)."
+      "FittedBox может ограничить только виджет, который ОГРАНИЧЕН (имеет не бесконечную ширину и высоту)."
       "\n\n"
-      "Otherwise, it won't render anything, and you will get an error in the console.";
+      "Иначе рендер не произойдёт и в консоли будет ошибка";
 
   @override
   Widget build(BuildContext context) {
@@ -725,12 +723,12 @@ class Example23 extends Example {
       "   Container(color: red, child: Text('Hello!'))\n"
       "   Container(color: green, child: Text('Goodbye!'))]";
   final String explanation =
-      "The screen forces the Row to be exactly the same size of the screen."
+      "Экран заставляет Row быть размером с экран."
       "\n\n"
-      "Just like an UnconstrainedBox, the Row won't impose any constraints to its children, "
-      "and will instead let them have any size they want."
+      "Как и UnconstrainedBox, Row не будет накладывать никаких ограничений для дочерних элементов"
+      "и позволит им иметь размер, какой они хотят"
       "\n\n"
-      "The Row will then put them side by side, and any extra space will remain empty.";
+      "Row поместит их рядом, и любое дополнительное пространство останется пустым";
 
   @override
   Widget build(BuildContext context) {
@@ -750,10 +748,11 @@ class Example24 extends Example {
       "   Container(color: red, child: Text('…'))\n"
       "   Container(color: green, child: Text('Goodbye!'))]";
   final String explanation =
-      "Since the Row won't impose any constraints to its children, "
-      "it's quite possible that the children will be too big to fit the available Row width."
+      "Т.к. строка не накладывает ограничения на дочерних элементов"
+      "вполне возможно, что дочерние элементы будут слишком большими, "
+      "чтобы соответствовать доступной ширине строки"
       "\n\n"
-      "In this case, just like an UnconstrainedBox, the Row will display the \"overflow warning\".";
+      "ТОгда (как и в случае с UnconstrainedBox) будет отображаться \"overflow warning\".";
 
   @override
   Widget build(BuildContext context) {
@@ -777,11 +776,10 @@ class Example25 extends Example {
       "       child: Container(color: red, child: Text('…')))\n"
       "   Container(color: green, child: Text('Goodbye!'))]";
   final String explanation =
-      "When a Row child is wrapped in an Expanded widget, the Row will not let this child define its own width anymore."
+      "Когда дочерний элемент Row заклчючен в Expanded, Row больше не позволяетэтому дочернему элементу определять свою собственную ширину."
       "\n\n"
-      "Instead, it will define the Expanded width according to the other children, and only then the Expanded widget will force the original child to have the Expanded's width."
-      "\n\n"
-      "In other words, once you use Expanded, the original child's width becomes irrelevant, and will be ignored.";
+      "Вместо этого он будет определять свлю ширину в соответствии с другими дочерними элементами, и только тогда Expanded заставит дочерний элемент иметь свою ширину"
+      "\n\n";
 
   @override
   Widget build(BuildContext context) {
@@ -809,10 +807,10 @@ class Example26 extends Example {
       "   Expanded(\n"
       "       child: Container(color: green, child: Text('Goodbye!'))]";
   final String explanation =
-      "If all Row children are wrapped in Expanded widgets, each Expanded will have a size proportional to its flex parameter, "
-      "and only then each Expanded widget will force their child to have the Expanded's width."
+      "Если все дочерние элементы Row заключены в Expanded, каждый Expanded будет иметь размер пропорционально его параметру flex"
+      "и Expanded заставит свой дочерний элемент иметь свою ширину."
       "\n\n"
-      "In other words, the Expanded ignores their children preferred width.";
+      "Другими словами, Expanded игнорирует предпочтительную ширину своих дочерних элементов";
 
   @override
   Widget build(BuildContext context) {
@@ -840,15 +838,10 @@ class Example27 extends Example {
       "   Flexible(\n"
       "       child: Container(color: green, child: Text('Goodbye!'))]";
   final String explanation =
-      "The only difference if you use Flexible instead of Expanded, "
-      "is that Flexible will let its child be SMALLER than the Flexible width, "
-      "while Expanded forces its child to have the same width of the Expanded."
-      "\n\n"
-      "But both Expanded and Flexible will ignore their children width when sizing themselves."
-      "\n\n"
-      "Note, this means it's IMPOSSIBLE to expand Row children proportionally to their sizes. "
-      "The Row will either use the exact child's with, or ignore it completely when you use Expanded or Flexible.";
-
+      "Разница между Flexible и Expanded в том, что"
+      "Flexible позволяет своему дочернему элементу быть МЕНЬШЕ, чем ширина Flexible"
+      "в то время как Expanded заставляет свои дочерние элементы быть своей ширины";
+     
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -866,76 +859,3 @@ class Example27 extends Example {
   }
 }
 
-//////////////////////////////////////////////////
-
-class Example28 extends Example {
-  final String code = "Scaffold(\n"
-      "   body: Container(color: blue,\n"
-      "   child: Column(\n"
-      "      children: [\n"
-      "         Text('Hello!'),\n"
-      "         Text('Goodbye!')])))";
-
-  final String explanation =
-      "The screen forces the Scaffold to be exactly the same size of the screen."
-      "\n\n"
-      "So the Scaffold fills the screen."
-      "\n\n"
-      "The Scaffold tells the Container it can be any size it wants, but not bigger than the screen."
-      "\n\n"
-      "Note: When a widget tells its child it can be smaller than a certain size, "
-      "we say the widget supplies \"loose\" constraints to its child. More on that later.";
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        color: blue,
-        child: Column(
-          children: [
-            Text('Hello!'),
-            Text('Goodbye!'),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-//////////////////////////////////////////////////
-
-class Example29 extends Example {
-  final String code = "Scaffold(\n"
-      "   body: Container(color: blue,\n"
-      "   child: SizedBox.expand(\n"
-      "      child: Column(\n"
-      "         children: [\n"
-      "            Text('Hello!'),\n"
-      "            Text('Goodbye!')]))))";
-
-  final String explanation =
-      "If we want the Scaffold's child to be exactly the same size as the Scaffold itself, "
-      "we can wrap its child into a SizedBox.expand."
-      "\n\n"
-      "Note: When a widget tells its child it must be of a certain size, "
-      "we say the widget supplies \"tight\" constraints to its child. More on that later.";
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: SizedBox.expand(
-        child: Container(
-          color: blue,
-          child: Column(
-            children: [
-              Text('Hello!'),
-              Text('Goodbye!'),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-//////////////////////////////////////////////////
