@@ -39,6 +39,7 @@ class HomePage extends StatelessWidget {
         Example25(),
         Example26(),
         Example27(),
+        Example28(),
       ]);
 }
 
@@ -94,65 +95,61 @@ class _FlutterLayoutArticleState extends State<FlutterLayoutArticle> {
       home: SafeArea(
         child: Material(
           color: Colors.black,
-          child: FittedBox(
-            child: Container(
-              width: 400,
-              height: 670,
-              color: Color(0xFFCCCCCC),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Expanded(
-                    child: ConstrainedBox(
-                        constraints: BoxConstraints.tightFor(
-                            width: double.infinity, height: double.infinity),
-                        child: widget.examples[count - 1]),
-                  ),
-                  Container(
-                    height: 50,
-                    width: double.infinity,
-                    color: Colors.black,
-                    child: SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          for (int i = 0; i < widget.examples.length; i++)
-                            Container(
-                              width: 58,
-                              padding:
-                                  const EdgeInsets.only(left: 4.0, right: 4.0),
-                              child: button(i + 1),
-                            ),
-                        ],
-                      ),
+          child: Container(
+            color: Color(0xFFCCCCCC),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Expanded(
+                  child: ConstrainedBox(
+                      constraints: BoxConstraints.tightFor(
+                          width: double.infinity, height: double.infinity),
+                      child: widget.examples[count - 1]),
+                ),
+                Container(
+                  height: 50,
+                  width: double.infinity,
+                  color: Colors.black,
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        for (int i = 0; i < widget.examples.length; i++)
+                          Container(
+                            width: 58,
+                            padding:
+                                const EdgeInsets.only(left: 4.0, right: 4.0),
+                            child: button(i + 1),
+                          ),
+                      ],
                     ),
                   ),
-                  Container(
-                      child: Scrollbar(
-                        child: SingleChildScrollView(
-                          key: ValueKey(count),
-                          child: Padding(
-                            padding: const EdgeInsets.all(10.0),
-                            child: Column(
-                              children: <Widget>[
-                                Center(child: Text(code)),
-                                SizedBox(height: 15),
-                                Text(
-                                  explanation,
-                                  style: TextStyle(
-                                      color: Colors.blue[900],
-                                      fontStyle: FontStyle.italic),
-                                ),
-                              ],
-                            ),
+                ),
+                Container(
+                    child: Scrollbar(
+                      child: SingleChildScrollView(
+                        key: ValueKey(count),
+                        child: Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Column(
+                            children: <Widget>[
+                              Center(child: Text(code)),
+                              SizedBox(height: 15),
+                              Text(
+                                explanation,
+                                style: TextStyle(
+                                    color: Colors.blue[900],
+                                    fontStyle: FontStyle.italic),
+                              ),
+                            ],
                           ),
                         ),
                       ),
-                      height: 273,
-                      color: Colors.grey[200]),
-                ],
-              ),
+                    ),
+                    height: 273,
+                    color: Colors.grey[200]),
+              ],
             ),
           ),
         ),
@@ -398,7 +395,7 @@ class Example9 extends Example {
       "              maxWidth: 150, maxHeight: 150),\n"
       "      child: Container(color: red, width: 10, height: 10)))";
   final String explanation =
-      "Вы можете предположить, что Container должен быть между 70 и 150, но вы ошибайтесь"
+      "Вы можете предположить, что Container должен быть между 70 и 150, но вы ошибаетесь "
       "ConstrainedBox накладывает только ДОПОЛНИТЕЛЬНЫЕ ограничения, чем те которые он получил от своего родителя";
 
 
@@ -681,7 +678,7 @@ class Example21 extends Example {
   final String code = "Center(\n"
       "   child: Text('…'));";
   final String explanation = "Если убрать FittedBox, "
-      "Text получит максимальную ширину от экрана"
+      "Text получит максимальную ширину от экрана "
       "и перенесёт строку, если она не влезает";
 
   @override
@@ -748,11 +745,11 @@ class Example24 extends Example {
       "   Container(color: red, child: Text('…'))\n"
       "   Container(color: green, child: Text('Goodbye!'))]";
   final String explanation =
-      "Т.к. строка не накладывает ограничения на дочерних элементов"
+      "Т.к. строка не накладывает ограничения на дочерних элементов "
       "вполне возможно, что дочерние элементы будут слишком большими, "
       "чтобы соответствовать доступной ширине строки"
       "\n\n"
-      "ТОгда (как и в случае с UnconstrainedBox) будет отображаться \"overflow warning\".";
+      "Тогда (как и в случае с UnconstrainedBox) будет отображаться \"overflow warning\".";
 
   @override
   Widget build(BuildContext context) {
@@ -776,9 +773,9 @@ class Example25 extends Example {
       "       child: Container(color: red, child: Text('…')))\n"
       "   Container(color: green, child: Text('Goodbye!'))]";
   final String explanation =
-      "Когда дочерний элемент Row заклчючен в Expanded, Row больше не позволяетэтому дочернему элементу определять свою собственную ширину."
+      "Когда дочерний элемент Row заключен в Expanded, Row больше не позволяет этому дочернему элементу определять свою собственную ширину."
       "\n\n"
-      "Вместо этого он будет определять свлю ширину в соответствии с другими дочерними элементами, и только тогда Expanded заставит дочерний элемент иметь свою ширину"
+      "Вместо этого он будет определять свою ширину в соответствии с другими дочерними элементами, и только тогда Expanded заставит дочерний элемент иметь свою ширину"
       "\n\n";
 
   @override
@@ -807,7 +804,7 @@ class Example26 extends Example {
       "   Expanded(\n"
       "       child: Container(color: green, child: Text('Goodbye!'))]";
   final String explanation =
-      "Если все дочерние элементы Row заключены в Expanded, каждый Expanded будет иметь размер пропорционально его параметру flex"
+      "Если все дочерние элементы Row заключены в Expanded, каждый Expanded будет иметь размер пропорционально его параметру flex "
       "и Expanded заставит свой дочерний элемент иметь свою ширину."
       "\n\n"
       "Другими словами, Expanded игнорирует предпочтительную ширину своих дочерних элементов";
@@ -839,7 +836,7 @@ class Example27 extends Example {
       "       child: Container(color: green, child: Text('Goodbye!'))]";
   final String explanation =
       "Разница между Flexible и Expanded в том, что"
-      "Flexible позволяет своему дочернему элементу быть МЕНЬШЕ, чем ширина Flexible"
+      "Flexible позволяет своему дочернему элементу быть МЕНЬШЕ, чем ширина Flexible "
       "в то время как Expanded заставляет свои дочерние элементы быть своей ширины";
      
   @override
@@ -859,3 +856,63 @@ class Example27 extends Example {
   }
 }
 
+/////////////////////////////////////////////////
+class Example28 extends Example {
+  final code = '';
+  final explanation = '';
+
+  final _containerHeight = 60.0;
+
+  @override 
+  Widget build(BuildContext context) {
+   return Column(
+      // mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: _getChildren(),
+    );
+  }
+
+final _colors = [Colors.white, Colors.blue, Colors.red];
+
+List<Widget> _getChildren() {
+  return _colors.map(
+    (e) => Container(
+      margin: const EdgeInsets.all(2),
+      width: double.infinity,
+      height: _containerHeight,
+      color: e,
+    ))
+  .toList();
+ }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//  Widget build(BuildContext context) {
+//     return LayoutBuilder(
+//       builder: (context, constrains) {
+//         return SingleChildScrollView(
+//           child: ConstrainedBox(
+//             constraints: BoxConstraints(minHeight: constrains.maxHeight),
+//             child: Column(
+//               mainAxisAlignment: MainAxisAlignment.spaceAround,
+//               mainAxisSize: MainAxisSize.min,
+//               children: _getChildren(),
+//             ),
+//           ),
+//         );
+//       }
+//     );
+}
